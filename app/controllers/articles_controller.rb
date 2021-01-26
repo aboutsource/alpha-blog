@@ -13,7 +13,11 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        render plain: params[:article]
+        @article = Article.new(params.require(:article).permit(:title, :description))
+        # :article = key for displaying title and description from article object
+        @article.save
+        redirect_to @article
+        # code to show action path
     end
 
 end
