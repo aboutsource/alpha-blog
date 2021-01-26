@@ -22,9 +22,10 @@ class ArticlesController < ApplicationController
         if @article.save
             flash[:notice] = "Yay, your post was saved!"
             redirect_to @article
+            # code to show action path
+            # can also write `redirect_to article_path(@article)`
         else
             render 'new'
-        # code to show action path
         end
     end
 
