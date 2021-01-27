@@ -4,13 +4,13 @@
 This is a RoR app I am building as part of the Udemy Course "Complete Ruby on Rails Developer Course"
 
 ## Features
-None as yet.
+
+* Users can create, read, update and delete posts.
 
 Planned features include:
 
 * Authentication System (log in, log out)
 * Special functionality for admins
-* Ability to browse blog posts
 * Search for posts according to categories
 
 And much more!
