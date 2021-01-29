@@ -1,7 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap';
 // To override any bootstrap classes
 
-
 #logo {
   float: left;
   font-size: 1.7em;
@@ -14,11 +13,14 @@
 .jumbotron {
   background-position: center center;
   background-size: cover;
+  background-color: white;
 }
 
 #home-container {
   margin-top: 25px;
 }
+
+// Code for sticky footer
 
 html,
 body {
@@ -28,6 +30,7 @@ body {
 
 #page-content {
   flex: 1 0 auto;
+  background-color: #EDF7F6;
 }
 
 #sticky-footer {
