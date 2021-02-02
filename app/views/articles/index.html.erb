@@ -9,7 +9,7 @@
           <h3><%= link_to article.title, article_path(article), class: "text-info" %> </h3>
         </div>
         <div class="card-body">
-          <h6 class="card-title font-italic"> Written by Victoria Hodder </h6>
+          <h6 class="card-title font-italic"> Written by <%= article.user.username if article.user %> </h6>
           <p class="card-text"> <%= truncate(article.description, length: 100) %> </p>
           <%= link_to 'View', article_path(article), class: "btn btn-outline-primary"%>
           <%= link_to 'Edit', edit_article_path(article), class: "btn btn-outline-warning"%>
