@@ -18,6 +18,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    # temporary solution to assign a user automatically
+    # (until we create a log in/out functionality)
+    @article.user = User.first
     if @article.save
       flash[:notice] = "Yay, your post was saved!"
       redirect_to @article
