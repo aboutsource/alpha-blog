@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # :article = key for displaying title and description from article object
     if @article.save
       flash[:notice] = "Yay, your post was saved!"
       redirect_to @article
@@ -51,6 +50,7 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+    # :article = key for displaying title and description from article object
   end
 
 end
