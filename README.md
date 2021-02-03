@@ -5,7 +5,7 @@ This is a RoR app I am building as part of the Udemy Course "Complete Ruby on Ra
 
 ## Features
 
-* Users can create, read, update and delete posts.
+* Users can create, read, update and delete posts
 
 Planned features include:
 
