@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # https://guides.rubyonrails.org/security.html#csrf-countermeasures
-  # protect_from_forgery with: :exception 
 
   helper_method :current_user, :logged_in?
 
@@ -10,8 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    # checks if sm is logged in
-    !!current_user
+    current_user.present?
   end
 
   def require_user
