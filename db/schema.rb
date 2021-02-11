@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_145233) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "user_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,7 +27,8 @@ ActiveRecord::Schema.define(version: 2021_02_08_145233) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
   end
 
+  add_foreign_key "articles", "users"
 end
