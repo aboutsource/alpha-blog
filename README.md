@@ -43,6 +43,8 @@ Please see Gemfile for more details.
 
 - Make a git clone of the code in this repo
 
+- run `bundle install`
+
 - Run `rails server` or `rails s` and access the local server on http://localhost:3000/
 
 
