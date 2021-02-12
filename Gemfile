@@ -21,6 +21,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Use will_paginate for pagination
 gem 'will_paginate', '3.3.0'
+# Rexml for running tests
+gem 'rexml', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
