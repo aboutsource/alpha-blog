@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  # why don't you need article_params at the top too? Because you need to set_article first
+  before_action :require_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -18,10 +19,10 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
       flash[:notice] = "Yay, your post was saved!"
       redirect_to @article
-      # code to show action path
       # can also write `redirect_to article_path(@article)`
     else
       render 'new'
@@ -50,7 +51,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
-    # :article = key for displaying title and description from article object
+  end
+
+  def require_same_user
+    if current_user.nil? || current_user != @article.user && !current_user.admin?
+      flash[:alert] = "You can only edit or delete your own articles"
+      redirect_to @article
+    end
   end
 
 end

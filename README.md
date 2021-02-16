@@ -6,11 +6,11 @@ This is a RoR app I am building as part of the Udemy Course "Complete Ruby on Ra
 ## Features
 
 * Users can create, read, update and delete posts.
+* Authentication System (log in, log out)
+* Special functionality for admins
 
 Planned features include:
 
-* Authentication System (log in, log out)
-* Special functionality for admins
 * Search for posts according to categories
 
 And much more!
@@ -25,7 +25,11 @@ Node 12.20.1
 ```
 
 ## Gems installed
-Default gems provided by Ruby + the postgreSQL gem
+```
+gem 'bcrypt', '~> 3.1.7'
+gem 'will_paginate', '3.3.0'
+gem 'pg'
+```
 
 Note: for production purposes, I am using PostgreSQL gem for production code. For development, I am using sqlite3.
 Please see Gemfile for more details.
@@ -35,11 +39,11 @@ Please see Gemfile for more details.
 
 - Install the appropriate versions of Ruby, Rails etc.
 
-For example, you can follow [these instructions](https://gorails.com/setup/ubuntu/20.04) if you are using Ubuntu 20.04.
+    For example, you can follow [these instructions](https://gorails.com/setup/ubuntu/20.04) if you are using Ubuntu 20.04.
 
 - Make a git clone of the code in this repo
 
-- Run `gem install pg` to set up the PostgreSQL gem
+- run `bundle install`
 
 - Run `rails server` or `rails s` and access the local server on http://localhost:3000/
 
