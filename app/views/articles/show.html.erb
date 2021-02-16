@@ -4,6 +4,9 @@
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header">
           <h3 class="text-info"> <%= @article.title %> </h3>
+          <% if @article.categories.any? %>
+            <div class="mt-2"> <%= render @article.categories %> </div>
+          <% end %>
         </div>
         <div class="card-body">
           <h6 class="card-title font-italic"> Written by <%= @article.user.username if @article.user %> </h6>
