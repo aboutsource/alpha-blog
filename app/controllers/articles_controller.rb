@@ -18,13 +18,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    byebug
     @article = Article.new(article_params)
     @article.user = current_user
     if @article.save
       flash[:notice] = "Yay, your post was saved!"
       redirect_to @article
-      # can also write `redirect_to article_path(@article)`
     else
       render 'new'
     end
