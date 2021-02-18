@@ -45,6 +45,8 @@ Please see Gemfile for more details.
 
 - run `bundle install`
 
+- run `rails assets:precompile`
+
 - Run `rails server` or `rails s` and access the local server on http://localhost:3000/
 
 
