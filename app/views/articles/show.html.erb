@@ -9,7 +9,9 @@
           <% end %>
         </div>
         <div class="card-body">
-          <h6 class="card-title font-italic"> Written by <%= @article.user.username if @article.user %> </h6>
+          <h6 class="card-title font-italic"> 
+            Written by <%= @article.user.username if @article.user %> 
+          </h6>
           <%= link_to gravatar_for(@article.user), user_path(@article.user), class: "gravatar" %>
           <div class="card-text"> <%= simple_format(@article.description) %> </div>
           <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
