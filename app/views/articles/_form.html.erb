@@ -15,7 +15,8 @@
           <%= f.label :description, class: "col-2 col-form-label text-light font-weight-bold" %>
           <div class="col-10">
             <%= f.text_area :description, rows:10, class: "form-control shadow rounded", 
-                placeholder: "Write something beautiful here" %>
+                placeholder: "Write something beautiful here" 
+            %>
           </div>
         </div>
 
@@ -23,8 +24,8 @@
           <%= f.label :category, class: "col-2 col-form-label text-light font-weight-bold" %>
           <div class="col-10">
             <%= f.collection_select(:category_ids, Category.all, :id, :name,
-                { prompt: "Choose your category (optional)" }, { multiple: true, size: 3, 
-                class: "custom-select shadow rounded" }) 
+                { prompt: "Choose your category (optional)" }, 
+                { multiple: true, size: 3, class: "custom-select shadow rounded" }) 
             %>
           </div>
         </div>
