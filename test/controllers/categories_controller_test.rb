@@ -23,7 +23,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Category.count', 1) do
       post categories_url, params: { category: { name: "Travel" } }
     end
+    assert_response :redirect
     assert_redirected_to category_url(Category.last)
+    follow_redirect!
+    assert_match "Travel", response.body
   end
 
   test "should not create category if not admin" do
@@ -32,8 +35,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :redirect
     assert_redirected_to categories_url
-    follow_redirect!
-    assert_match "Victoria", response.body
   end
 
   test "should show category" do
