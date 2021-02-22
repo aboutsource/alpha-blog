@@ -9,10 +9,9 @@ class CreateUserTest < ActionDispatch::IntegrationTest
       post users_path, params: {user: { username: "Victoria", email: "victoria@email.com", 
                                         password: "password", password_confirmation: "password" } }
     end
-
+    assert_response :redirect
+    assert_redirected_to articles_url
     follow_redirect!
-    # test if on articles listing
-    assert_response :success
     assert_match "Victoria", response.body
   end
 
