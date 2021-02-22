@@ -14,7 +14,6 @@ class CreateArticleTest < ActionDispatch::IntegrationTest
       post articles_path, params: {article: { title: "Nice title", description: "Nice description", 
                                   category_ids: [] } } # fails if I put categories inside - why?
     end
-
     assert_response :redirect
     assert_redirected_to article_url(Article.last)
     follow_redirect!
