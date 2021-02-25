@@ -23,7 +23,6 @@ class ArticlesController < ApplicationController
     if @article.save
       flash[:notice] = "Yay, your post was saved!"
       redirect_to @article
-      # can also write `redirect_to article_path(@article)`
     else
       render 'new'
     end
@@ -50,7 +49,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def require_same_user
