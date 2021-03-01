@@ -12,8 +12,9 @@ class PagesController < ApplicationController
       flash[:alert] = "Search cannot be blank"
       redirect_to root_path
     else
-      @parameter = params[:search].downcase
-      @results = Article.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
+      parameter = params[:search].downcase
+      @articles = Article.where('lower(title) LIKE :search OR lower(description) LIKE :search', 
+                  search: "%#{parameter}%")
     end 
   end
 

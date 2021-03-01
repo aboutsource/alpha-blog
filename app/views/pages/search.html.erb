@@ -1,5 +1,9 @@
 <h3>Search Result</h3>
 
-<% @results.each do |result| %>  
-    <%= result.title %><br>
+<% if @articles.empty? %>
+  <strong> No results found </strong> 
+<% else %>
+  <% @articles.each do |article| %>  
+      <%= link_to article.title, article_path(article) %><br>
+  <% end %>
 <% end %>
