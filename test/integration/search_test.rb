@@ -29,7 +29,6 @@ class ListSearchResultsTest < ActionDispatch::IntegrationTest
     get '/search?search=mug'
     assert_response :success
     assert_match "No results found", response.body
-
   end
 
 end
