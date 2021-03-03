@@ -5,7 +5,7 @@ class ListSearchResultsTest < ActionDispatch::IntegrationTest
     user = User.create!(username: "Victoria", email: "victoria@email.com", password: "secretpassword")
     @article = Article.create!(title: "A title", description: "This is nice", user: user)
     @article2 = Article.create!(title: "Another nice title", description: "This is really nice", user: user)
-    @article3 = Article.create!(title: "Another bad title", description: "This is really terrible", user: user)
+    @article3 = Article.create!(title: "A bad title", description: "This is really terrible", user: user)
   end
 
   test "should show search results" do
@@ -26,7 +26,10 @@ class ListSearchResultsTest < ActionDispatch::IntegrationTest
   end 
 
   test "should show no results if no results found" do
-    # TODO
+    get '/search?search=mug'
+    assert_response :success
+    assert_match "No results found", response.body
+
   end
 
 end
