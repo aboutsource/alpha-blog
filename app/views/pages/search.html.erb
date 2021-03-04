@@ -1,0 +1,8 @@
+<h3 class="text-center mt-4 mb-4"> Search Result</h3>
+<% if @articles.empty? %>
+  <strong> No results found </strong> 
+<% else %>
+  <% @articles.each do |article| %>  
+      <%= link_to article.title, article_path(article) %><br>
+  <% end %>
+<% end %>
