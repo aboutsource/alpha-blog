@@ -13,7 +13,7 @@ class PagesController < ApplicationController
       redirect_to root_path
     else
       parameter = params[:search].downcase
-      @articles = Article
+      @articles = Article.paginate(page: params[:page], per_page: 5)
         .where('lower(title) LIKE :search OR lower(description) LIKE :search', search: "%#{parameter}%")
         .order("title ASC")
     end 
