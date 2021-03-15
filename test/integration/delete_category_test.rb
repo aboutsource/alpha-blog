@@ -9,7 +9,6 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     @category = Category.create!(name: "Sports")
     @article = Article.create!(title: "Rugby is great", description: "This is a great sport", 
                                 user: admin_user, category_ids: [1])
-    # assign this article to the given category
   end
 
   test "should delete category" do
@@ -57,8 +56,6 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     assert_match "This is a great sport", response.body
     # Check the category button is gone
     assert_no_match "Sports", response.body
-
   end
 
 end
-
