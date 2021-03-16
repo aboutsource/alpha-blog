@@ -3,16 +3,27 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-  def show
-    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
-  end
-  
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
 
+  def show
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+  end
+
   def new
     @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "Welcome #{@user.username}! You have successfully signed up."
+      redirect_to articles_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -24,19 +35,6 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
-    end
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      # puts "success"
-      session[:user_id] = @user.id
-      flash[:notice] = "Welcome #{@user.username}! You have successfully signed up."
-      redirect_to articles_path
-    else
-      # puts @user.errors.inspect
-      render 'new'
     end
   end
 
