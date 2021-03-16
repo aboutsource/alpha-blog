@@ -12,9 +12,8 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
   end
 
 
-  test "should not delete associated article" do
+  test "should delete a category without deleting an associated article" do
 
-    # Delete the category
     get category_path(@category)
     assert_response :success
     assert_match "Are you sure?", response.body
@@ -26,14 +25,10 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match "Categories", response.body
 
-    # Check if article is unaffected by category deletion
     get article_path(@article)
     assert_response :success
-    # Check the title is still there
     assert_match "Rugby is great", response.body
-    # Check the description is still there
     assert_match "This is a great sport", response.body
-    # Check the category button is gone
     assert_no_match "Sports", response.body
   end
 
