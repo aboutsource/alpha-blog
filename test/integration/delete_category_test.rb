@@ -15,7 +15,7 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
   test "should not delete associated article" do
 
     # Delete the category
-    get "/categories/1"
+    get category_path(@category)
     assert_response :success
     assert_match "Are you sure?", response.body
     assert_difference 'Category.count', -1 do
@@ -27,7 +27,7 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     assert_match "Categories", response.body
 
     # Check if article is unaffected by category deletion
-    get "/articles/1"
+    get article_path(@article)
     assert_response :success
     # Check the title is still there
     assert_match "Rugby is great", response.body
