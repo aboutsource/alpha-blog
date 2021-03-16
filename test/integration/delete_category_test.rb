@@ -6,8 +6,8 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     admin_user = User.create!(username: "vhodder", email: "vhodder@email.com",
                               password: "password", admin: true)
     sign_in_as(admin_user)
-    @category = Category.create!(name: "Sports")
-    @article = Article.create!(title: "Rugby is great", description: "This is a great sport", 
+    @category = Category.create!(id: 1, name: "Sports")
+    @article = Article.create!(id: 1, title: "Rugby is great", description: "This is a great sport", 
                                 user: admin_user, category_ids: [@category.id])
   end
 
@@ -26,7 +26,7 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match "Categories", response.body
 
-    # Go back to article show page
+    # Check if article is unaffected by category deletion
     get "/articles/1"
     assert_response :success
     # Check the title is still there
