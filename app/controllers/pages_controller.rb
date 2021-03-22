@@ -20,6 +20,8 @@ class PagesController < ApplicationController
   end
 
   def welcome
+    # add needs_confirmation method??
+    # https://stackoverflow.com/questions/51724589/allow-unconfirmed-users-to-access-certain-pages-which-require-authentication
   end
 
 end
