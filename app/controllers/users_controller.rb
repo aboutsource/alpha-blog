@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
+      # move lines 23, 24 to another controller so user is only logged in once they confirm their email
       session[:user_id] = @user.id
       flash[:notice] = "Welcome #{@user.username}! You have successfully signed up."
       redirect_to articles_path
