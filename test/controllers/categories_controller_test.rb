@@ -3,12 +3,15 @@ require "test_helper"
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = Category.create!(id: 1, name: "Sports")
+    @category2 = Category.create!(id: 2, name: "Food+Drink")
     @admin_user = User.create!(username: "vhodder", email: "vhodder@email.com",
                               password: "password", admin: true)
     @article = Article.create!(id: 1, title: "Rugby is great", description: "This is nice sport", 
                                 user: @admin_user, category_ids: [@category.id])
     @article2 = Article.create!(id: 2, title: "Archery is not a sport", description: "Archery is a discipline", 
-                                user: @admin_user, category_ids: [@category.id])
+                                user: @admin_user, category_ids: [@category.id, @category2.id])
+    @article3 = Article.create!(id: 3, title: "Drinking Tea", description: "...is very good for you", 
+                                user: @admin_user, category_ids: [@category2.id])
   end
 
   test "should get index" do
@@ -44,10 +47,13 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   test "should show articles listing in category page" do
     get category_url(@category)
     assert_response :success
+
     assert_match "Category: #{@category.name}", response.body
     assert_match "Articles", response.body
     assert_select "a[href=?]", article_path(@article), text: @article.title
     assert_select "a[href=?]", article_path(@article2), text: @article2.title
-  end
 
+    assert_no_match "#{@article3.title}", response.body
+    assert_select "a[href=?]", article_path(@article3), text: @article3.title, :count => 0
+  end
 end
