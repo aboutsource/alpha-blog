@@ -22,7 +22,21 @@ class UsersController < ApplicationController
       flash[:notice] = "Please check your emails to confirm your sign up"
       redirect_to root_path
     else
+      flash[:error] = "Ooooppss, something went wrong!"
       render 'new'
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate # currently facing a bug with this line
+      redirect_to welcome_path
+      # flash[:notice] = "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
+      # redirect_to login_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
     end
   end
 

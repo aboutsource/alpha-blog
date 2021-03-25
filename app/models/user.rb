@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_create :confirmation_token
+
   before_save { self.email = email.downcase }
   has_many :articles, dependent: :destroy
   validates :username, presence: true, 
@@ -10,4 +12,17 @@ class User < ApplicationRecord
             length: { maximum: 105 },
             format: { with: VALID_EMAIL_REGEX }
   has_secure_password
+
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
+
 end
