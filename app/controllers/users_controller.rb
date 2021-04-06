@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to welcome_path
     else
       flash[:error] = "Sorry. User does not exist"
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 
