@@ -2,7 +2,7 @@ require "test_helper"
 
 class ListSearchResultsTest < ActionDispatch::IntegrationTest
   def setup
-    user = User.create!(username: "Victoria", email: "victoria@email.com", password: "secretpassword")
+    user = User.create!(username: "Victoria", email: "victoria@email.com", password: "secretpassword", email_confirmed: true)
     @article = Article.create!(title: "A title", description: "This is nice", user: user)
     @article2 = Article.create!(title: "Another nice title", description: "This is really good", user: user)
     @article3 = Article.create!(title: "A weird title", description: "This is really strange", user: user)
