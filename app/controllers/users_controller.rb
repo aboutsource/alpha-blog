@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       user.email_activate 
       redirect_to welcome_path
     else
-      flash[:error] = "Sorry. User does not exist"
+      flash[:error] = "Sorry. User does not exist or your signup link has expired."
       redirect_to root_path
     end
   end
