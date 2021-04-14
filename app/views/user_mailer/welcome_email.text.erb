@@ -1,0 +1,5 @@
+Welcome to Alpha Blog, <%= @user.username %>
+===============================================
+You have successfully signed up.
+Confirm your email address by clicking this <%= link_to 'link', confirm_email_url(@user.confirm_token) %>
+Thanks for joining and have a great day!

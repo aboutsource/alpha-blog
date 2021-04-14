@@ -4,7 +4,7 @@ class CreateArticleTest < ActionDispatch::IntegrationTest
   setup do
     @category = Category.create(name: "Travel", id: 1)
     @test_user = User.create(username: "Victoria", email: "victoria@email.com",
-                              password: "password", admin: false)
+                              password: "password", admin: false, email_confirmed: true)
     sign_in_as(@test_user)
   end
 

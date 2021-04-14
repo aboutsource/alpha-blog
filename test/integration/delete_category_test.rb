@@ -4,7 +4,7 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
 
   setup do
     admin_user = User.create!(username: "vhodder", email: "vhodder@email.com",
-                              password: "password", admin: true)
+                              password: "password", admin: true, email_confirmed: true)
     sign_in_as(admin_user)
     @category = Category.create!(id: 1, name: "Sports")
     @article = Article.create!(id: 1, title: "Rugby is great", description: "This is a great sport", 

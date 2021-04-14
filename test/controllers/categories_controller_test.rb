@@ -5,7 +5,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     @category = Category.create!(id: 1, name: "Sports")
     @category2 = Category.create!(id: 2, name: "Food+Drink")
     @admin_user = User.create!(username: "vhodder", email: "vhodder@email.com",
-                              password: "password", admin: true)
+                              password: "password", admin: true, email_confirmed: true))
     @article = Article.create!(id: 1, title: "Rugby is great", description: "This is nice sport", 
                                 user: @admin_user, category_ids: [@category.id])
     @article2 = Article.create!(id: 2, title: "Archery is not a sport", description: "Archery is a discipline", 

@@ -18,11 +18,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Welcome #{@user.username}! You have successfully signed up."
-      redirect_to articles_path
+      UserMailer.welcome_email(@user).deliver_now
+      flash[:notice] = "Please check your emails to confirm your sign up"
+      redirect_to root_path
     else
+      flash[:error] = "Ooooppss, something went wrong!"
       render 'new'
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:token])
+    if user
+      user.email_activate 
+      redirect_to welcome_path
+    else
+      flash[:error] = "Sorry. User does not exist or your signup link has expired."
+      redirect_to root_path
     end
   end
 
